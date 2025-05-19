@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
@@ -33,21 +33,29 @@ const App = () => {
 	useGSAP(() => {
 		if (!showContent) return;
 
-		const animateEl = (selector, options) => {
-			gsap.to(selector, {
-				scale: 1,
-				rotate: 0,
-				duration: 2,
-				ease: "Expo.easeInOut",
-				...options,
-			});
-		};
+		gsap.to(".main", {
+			scale: 1,
+			rotate: 0,
+			duration: 2,
+			delay: "-1",
+			ease: "Expo.easeInOut",
+		});
 
-		animateEl(".main", { delay: -1 });
-		animateEl(".sky", { delay: -0.8 });
-		animateEl(".building", { delay: -0.8 });
-		animateEl(".sky", { delay: -0.8 });
-		animateEl(".text", { delay: -0.8 });
+		gsap.to(".sky", {
+			scale: 1.1,
+			rotate: 0,
+			duration: 2,
+			delay: "-.8",
+			ease: "Expo.easeInOut",
+		});
+
+		gsap.to(".building", {
+			scale: 1.1,
+			rotate: 0,
+			duration: 2,
+			delay: "-.8",
+			ease: "Expo.easeInOut",
+		});
 
 		gsap.to(".girl", {
 			scale: 0.7,
@@ -55,11 +63,18 @@ const App = () => {
 			bottom: "-50%",
 			rotate: 0,
 			duration: 2,
-			delay: -0.8,
+			delay: "-.8",
 			ease: "Expo.easeInOut",
 		});
 
-		// On mouse images move
+		gsap.to(".text", {
+			scale: 1,
+			rotate: 0,
+			duration: 2,
+			delay: "-.8",
+			ease: "Expo.easeInOut",
+		});
+
 		const handleMouseMove = (e) => {
 			const xMove = (e.clientX / window.innerWidth - 0.5) * 40;
 			gsap.to(".imagesContainer .text", { x: `${xMove * 0.4}%` });
